@@ -2,85 +2,97 @@ package FOR;
 
 public class CicloFor {
     public static void main(String[] args) throws Exception {
-        System.out.println(isPalindrome("ciao"));
+        // TEST METODO isPalindrome
+        System.out.println(isPalindrome("ciao")); // false
+        System.out.println(isPalindrome("abba")); // true
+
+        // TEST METODO minMax
         int[] num = { 1, 2, 3, 4, 5, -1 };
-        for (int i : minMax(num)) {
+        for (int i : minMax(num)) { // ritorna array con {max, min}
             System.out.println(i);
         }
-        System.out.println(oddOrEven(2));
 
-        System.out.println(isPalindrome("abba"));
+        // TEST METODO oddOrEven
+        System.out.println(oddOrEven(2)); // Pari
     }
 
-    // Uso di array e cicli for classici
-
-    // Scrivere un metodo che verifichi se una parola è palindroma.
+    // ===============================================
+    // METODO: VERIFICA SE UNA PAROLA È PALINDROMA
+    // ===============================================
     public static boolean isPalindrome(String parola) {
-        char[] parolaInvertita = parola.toCharArray();
-        char[] result = new char[parolaInvertita.length];
-        char[] parolaDritta = parola.toCharArray();
+        char[] parolaInvertita = parola.toCharArray(); // trasformo stringa in array di caratteri
+        char[] result = new char[parolaInvertita.length]; // array per contenere parola invertita
+        char[] parolaDritta = parola.toCharArray(); // array della parola originale
         int j = 0;
         boolean isPal = true;
 
+        // ciclo al contrario per invertire la parola
         for (int i = parolaInvertita.length - 1; i >= 0; i--) {
             result[j++] = parolaInvertita[i];
         }
 
+        // confronto carattere per carattere
         for (int i = 0; i < parolaDritta.length; i++) {
             if (result[i] != parolaDritta[i]) {
-                isPal = false;
+                isPal = false; // se anche un carattere non coincide, non è palindroma
             }
         }
 
         return isPal;
     }
 
-    // // Scrivi un metodo che conta quante volte compare un carattere in una
-    // stringa.
-
+    // ===============================================
+    // METODO: CONTA QUANTE VOLTE UN CARATTERE APPARE IN UNA STRINGA
+    // ===============================================
     public static int countTime(String parola, char character) {
         int count = 0;
-        char[] array = parola.toCharArray();
+        char[] array = parola.toCharArray(); // trasformo in array per iterare
         for (int i = 0; i < array.length; i++) {
             if (array[i] == character) {
-                count++;
+                count++; // incremento contatore se c'è corrispondenza
             }
         }
-
         return count;
     }
 
+    // ===============================================
+    // METODO: VERIFICA SE UN NUMERO È PARI O DISPARI
+    // ===============================================
     public static String oddOrEven(int number) {
         String odd = "Pari";
         String even = "Dispari";
+        // operatore ternario per controllare il modulo 2
         String result = number % 2 == 0 ? odd : even;
-
         return result;
     }
 
-    // // Dato un array di interi, trova il valore massimo e il minimo. ok
+    // ===============================================
+    // METODO: TROVA IL MASSIMO E IL MINIMO IN UN ARRAY DI INTERI
+    // ===============================================
     public static int[] minMax(int[] number) {
-
         int max = number[0];
         int min = number[0];
 
         for (int i = 0; i < number.length; i++) {
             if (number[i] > max) {
-                max = number[i];
+                max = number[i]; // aggiorna massimo
             } else if (number[i] < min) {
-                min = number[i];
+                min = number[i]; // aggiorna minimo
             }
         }
 
-        int[] arrayResult = new int[] { max, min };
+        int[] arrayResult = new int[] { max, min }; // ritorna array {max, min}
         return arrayResult;
     }
 
+    // ===============================================
+    // METODO: INVERTI UNA STRINGA
+    // ===============================================
     public static String invertiStringa(String parola) {
-
-        char[] parolaInvertita = parola.toCharArray();
+        char[] parolaInvertita = parola.toCharArray(); // trasformo in array
         String result = "";
 
+        // ciclo al contrario per costruire la stringa invertita
         for (int i = parolaInvertita.length - 1; i >= 0; i--) {
             result += parolaInvertita[i];
         }
@@ -88,24 +100,15 @@ public class CicloFor {
         return result;
     }
 
+    // ===============================================
+    // METODO DI SUPPORTO: STAMPA GLI ELEMENTI DI UN ARRAY DI STRINGHE
+    // ===============================================
+    public static String stampaNomi(String[] array) {
+        String result = "";
+        for (String string : array) {
+            System.out.println(string);
+        }
+        return result;
+    }
+
 }
-// // Scrivi un metodo che inverte una stringa. ok
-
-// // Scrivi un metodo che verifica se una parola è palindroma. ok
-
-// // Dato un array di interi, trova il valore massimo e il minimo. ok
-
-// // Dato un numero intero, verifica se è pari o dispari. ok
-
-// // ☕ Java Core
-
-// // Scrivi un metodo che conta quante volte compare un carattere in una
-// stringa.
-
-// // Spiega e mostra con codice la differenza tra == ed equals().
-
-// // Scrivi un metodo che rimuove i duplicati da una lista di interi.
-
-// // Dato un array di stringhe, restituisci la stringa più lunga.
-
-// // Scrivi un metodo che converte una stringa in int gestendo eventuali errori
