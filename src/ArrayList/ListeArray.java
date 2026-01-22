@@ -52,7 +52,7 @@ public class ListeArray {
         // STAMPA DIRETTA DELLA LISTA
         System.out.println(personeString);
 
-        // ITERAZIONE CLASSICA SULLA LISTA
+        // CON ENHANCHED FOR
         for (String arrayList : personeString) {
             System.out.println(arrayList);
         }
@@ -67,7 +67,7 @@ public class ListeArray {
         // ITERAZIONE USANDO METHOD REFERENCE
         personeString.forEach(System.out::println);
 
-        // ITERAZIONE CLASSICA NUOVAMENTE
+        // ITERAZIONE CON ENHANCHED FOR NUOVAMENTE
         for (String personee : personeString) {
             System.out.println(personee);
         }
