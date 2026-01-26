@@ -17,18 +17,18 @@ public class Mappe {
         // %f Numero decimale con virgola ES: 3.14
         // %n Vai a capo (newline)
 
-        final Map<Integer, String> mappaMaschi = new HashMap<>();
+        final Map<Integer, String> mapMen = new HashMap<>();
 
-        mappaMaschi.put(2, "Marco");
-        mappaMaschi.put(44, "Giorgio");
-        mappaMaschi.put(42, "Francesco");
+        mapMen.put(2, "Marco");
+        mapMen.put(44, "Giorgio");
+        mapMen.put(42, "Francesco");
 
-        final Map<Integer, String> mappaFemmine = new HashMap<>();
-        mappaFemmine.put(21, "Maria");
-        mappaFemmine.put(1, "Jessica");
-        mappaFemmine.put(22, "Nina");
+        final Map<Integer, String> mapWomen = new HashMap<>();
+        mapWomen.put(21, "Maria");
+        mapWomen.put(1, "Jessica");
+        mapWomen.put(22, "Nina");
 
-        final Map<Integer, String> mappaPersone = new HashMap<>();
+        final Map<Integer, String> mapPeople = new HashMap<>();
 
         // SBAGLIATI, IN JAVA NON SI POSSONO PASSARE COME COSTRUTTORI DUE MAPPE,
         // POSSIAMO FARE COME NELL'ESEMPIO SOTTO
@@ -42,27 +42,27 @@ public class Mappe {
 
         // Map<Integer, String> mappaPersone = new HashMap<>(mappaFemmine);
         // mappaPersone.putAll(mappaMaschi); // METHOD 1
-        mappaPersone.putAll(mappaFemmine); // METHOD 2
-        mappaPersone.putAll(mappaMaschi);
-        System.out.println(mappaPersone); // STAMPA MASCHI E FEMMINE
+        mapPeople.putAll(mapWomen); // METHOD 2
+        mapPeople.putAll(mapMen);
+        System.out.println(mapPeople); // STAMPA MASCHI E FEMMINE
 
         // SE LA CHIAVE CORRISPONDE O ESISTE, RESTITUIRA' TRUE ALTIRMENTI FALSE
-        System.out.println("La mappa contiene questa chiave? " + mappaPersone.containsKey(20)); // RESTITUISCE FALSE
+        System.out.println("La mappa contiene questa chiave? " + mapPeople.containsKey(20)); // RESTITUISCE FALSE
 
-        System.out.println("La mappa contiene questa chiave? " + mappaPersone.containsKey(22)); // RESTITITUISCE TRUE
+        System.out.println("La mappa contiene questa chiave? " + mapPeople.containsKey(22)); // RESTITITUISCE TRUE
 
         // PER RIMUOVERE POSSIAMO UTILIZZARE IL METODO REMOVE, UTILIZZANDO LA KEY
         // CORRISPONDENTE, OPPURE CLEAR PER RIMUOVERE TUTTO INSIEME
 
-        mappaPersone.remove(22);
-        System.out.println("La mappa contiene questa chiave? " + mappaPersone.containsKey(22));
+        mapPeople.remove(22);
+        System.out.println("La mappa contiene questa chiave? " + mapPeople.containsKey(22));
         // ORA REST FALSE, A DIFFERENZA DI PRIMA, PERCHE' RIMOSSA
 
         // METODO .SIZE() MI REST LA LUNGHEZZA DELLA MAPPA
-        System.out.println(mappaPersone.size()); // RISULTATO 5
+        System.out.println(mapPeople.size()); // RISULTATO 5
 
         // POSSIAMO UTILIZZARE REPLACE, PER RIMPIAZZARE UN VALORE
-        mappaPersone.replace(21, "Gianni");
+        mapPeople.replace(21, "Gianni");
         // System.out.println(mappaPersone);
 
         /////////////////////// ITERAZIONI //////////////////////////
@@ -75,11 +75,11 @@ public class Mappe {
         // CON ITERATOR
         System.out.println("\n===== ITERATOR =====\n");
 
-        final Iterator<Integer> iterator = mappaPersone.keySet().iterator();
+        final Iterator<Integer> iterator = mapPeople.keySet().iterator();
 
         while (iterator.hasNext()) {
             Integer nextKey = iterator.next();
-            System.out.printf(" Key is: %d, Value is: %s ", nextKey, mappaPersone.get(nextKey)); // FORMAT
+            System.out.printf(" Key is: %d, Value is: %s ", nextKey, mapPeople.get(nextKey)); // FORMAT
 
             // System.out.printf("Key is: %s, value is: %s%n", nextKey,
             // mappaPersone.get(nextKey)); // METODI ALTERNATIVI PER ANDARE A CAPO CON %s%n
@@ -93,8 +93,8 @@ public class Mappe {
 
         System.out.println("\n===== CON ENHANCHED FOR =====\n");
 
-        for (Integer key : mappaPersone.keySet()) {
-            System.out.printf(" Key is: %d, Value is: %s ", key, mappaPersone.get(key)); // FORMAT
+        for (Integer key : mapPeople.keySet()) {
+            System.out.printf(" Key is: %d, Value is: %s ", key, mapPeople.get(key)); // FORMAT
             System.out.println("           ");
 
             // OPPURE CLASSICO PRINTLN
@@ -104,8 +104,8 @@ public class Mappe {
         // CON LAMBDA E STREAM, METODO PIU UTILIZZATO
         System.out.println("\n======== CON LAMBDA E STREAM =======\n");
 
-        mappaPersone.keySet().forEach(key -> {
-            System.out.printf("Key is: %d, Value is: %s ", key, mappaPersone.get(key));
+        mapPeople.keySet().forEach(key -> {
+            System.out.printf("Key is: %d, Value is: %s ", key, mapPeople.get(key));
             System.out.println("           ");
             // OPPURE CLASSICO PRINTLN
             // System.out.println("Key is: " + key + "Value is: " + mappaPersone.get(key));
@@ -117,9 +117,9 @@ public class Mappe {
         /// NUMERICAMENTE O ALFABETICAMENTE SE STRINGHE
         System.out.println("\n======== CON LAMBDA E STREAM MA TREEMAP =======\n");
 
-        Map<Integer, String> mappaOrdinata = new TreeMap<>(mappaPersone); // UTILIZZO COSTRUCTOR MOD PER SEMPLICITÁ
-        mappaOrdinata.keySet().forEach(key -> {
-            System.out.printf("Key is: %d, Value is: %s ", key, mappaOrdinata.get(key));
+        Map<Integer, String> orderMap = new TreeMap<>(mapPeople); // UTILIZZO COSTRUCTOR MOD PER SEMPLICITÁ
+        orderMap.keySet().forEach(key -> {
+            System.out.printf("Key is: %d, Value is: %s ", key, orderMap.get(key));
             System.out.println("           ");
         });
 
