@@ -2,7 +2,10 @@ package Stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class StreamExercise {
@@ -16,12 +19,16 @@ public class StreamExercise {
         // upperList(names);
         ///////// SNACK 1
 
+        System.out.println("=======================================");
+
         ///////// SNACK 2
         // names.add("lorenzo");
         // Tieni solo i nomi che iniziano con "L".
         ///////// SNACK 2
         // listWithL(names);
         ///////// SNACK 2
+
+        System.out.println("=======================================");
 
         ///////// SNACK 3
         // Ottieni solo i numeri maggiori di 5.
@@ -30,18 +37,23 @@ public class StreamExercise {
         // numberFive(numbers);
         ///////// SNACK 3
 
+        System.out.println("=======================================");
+
         ///////// SNACK 4
         // Stessa lista di snack 3(non filtrato).
         // Ottieni i numeri moltiplicati per 3.
         numberMulti(numbers);
         ///////// SNACK 4
 
+        System.out.println("=======================================");
+
         ///////// SNACK 5
         // Ottieni la lunghezza di ogni parola → List<Integer>.
         List<String> worlds = new ArrayList<>(Arrays.asList("ciao", "sole", "mareeee"));
         worldLength(worlds);
-
         ///////// SNACK 5
+
+        System.out.println("=======================================");
 
         ///////// SNACK 6
         // Nomi che iniziano con L e in maiuscolo.
@@ -49,19 +61,97 @@ public class StreamExercise {
         peopleUpperWithL(people);
         ///////// SNACK 6
 
+        System.out.println("=======================================");
+
         ///////// SNACK 7
         // Solo pari, moltiplicati per 2.
         List<Integer> numbersRandom = new ArrayList<>(Arrays.asList(3, 7, 10, 2, 15));
         numberOperation(numbersRandom);
         ///////// SNACK 7
 
-        ///////// SNACK 8
+        System.out.println("=======================================");
 
         ///////// SNACK 8
+        // Parole con lunghezza > 3 → in maiuscolo.
+        // List<String> worlds = new ArrayList<>(Arrays.asList("ciao", "sole", "mare",
+        // "si")); VARIABILE GIA USATA, UTILIZZO QUELLA VECCHIA(SNACK 5)
+        // AGGIUNGENDO/MODIFICANDO
+        worlds.set(2, "Mare");
+        worlds.add("Si");
+        // worlds.forEach(System.out::println);
+        peopleUpperWithLength(worlds);
+        ///////// SNACK 8
+
+        System.out.println("=======================================");
+
+        ///////// SNACK 9
+        // togli i duplicati
+        List<String> peopleDuplicate = new ArrayList<>(
+                Arrays.asList("Luca", "Marco", "Anna", "lorenzo", "lorenzo", "lorenzo"));
+        // uniqueNames(peopleDuplicate);
+        ///////// SNACK 9
+
+        System.out.println("=======================================");
+
+        ///////// SNACK 10
+        // Stessa lista. Nomi unici in maiuscolo.
+        uniqueNamesUpper(peopleDuplicate);
+
+        ///////// SNACK 10
 
     }
-
     ////// METODI//////
+
+    ///////// SNACK 10
+    public static List<String> uniqueNamesUpper(List<String> peopleSet) {
+        List<String> resultPeople = peopleSet.stream()
+                .collect(Collectors.toSet())
+                .stream()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+        for (String resultPeople2 : resultPeople) {
+            System.out.println(resultPeople2);
+        }
+
+        return resultPeople;
+    }
+    ///////// SNACK 10
+
+    //////// SNACK 9
+    public static List<String> uniqueNames(List<String> peopleSet) {
+        // Set<String> resultPeople = peopleSet.stream()
+        // .collect(Collectors.toSet()); // SE RITORNO UN SET
+        List<String> resultPeople = peopleSet.stream()
+                .collect(Collectors.toSet())
+                .stream()
+                .collect(Collectors.toList());
+        resultPeople.forEach(System.out::println); // NO ORDINATA
+        // List<String> resultPeople = peopleSet.stream()
+        // .collect(Collectors.toCollection(LinkedHashSet::new)) MANTIENE L ORDINE,
+        // METHOD REFERENCE
+        // .stream()
+        // .collect(Collectors.toList());
+        // List<String> resultPeople = peopleSet.stream()
+        // .collect(Collectors.toCollection(() -> new LinkedHashSet<>())) MANTIENE L
+        // ORDINE,
+        // LAMBDA VERSION
+        // .stream()
+        // .collect(Collectors.toList());
+        return resultPeople;
+    }
+    ///////// SNACK 9
+
+    ///////// SNACK 8
+    public static List<String> peopleUpperWithLength(List<String> peopleList) {
+        List<String> resultPeople = peopleList.stream()
+                .filter(person -> person.length() > 3)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
+
+        resultPeople.forEach(System.out::println);
+        return resultPeople;
+    }
+    ///////// SNACK 8
 
     ///////// SNACK 7
     public static List<Integer> numberOperation(List<Integer> numbersList) {
@@ -163,18 +253,6 @@ public class StreamExercise {
 ///////// SNACK 2
 
 ///////// SNACK 2
-
-// Snack 8
-// List<String> parole = new ArrayList<>(List.of("ciao", "sole", "mare", "si"));
-
-// 👉 Parole con lunghezza > 3 → in maiuscolo.
-
-// 🥇 LIVELLO 3 — toSet (duplicati)
-// Snack 9
-// List<String> nomi = new ArrayList<>(List.of("Luca", "Marco", "Luca",
-// "Anna"));
-
-// 👉 Ottieni i nomi unici.
 
 // Snack 10
 
